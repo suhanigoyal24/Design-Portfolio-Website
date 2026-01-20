@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortfolioPro | Build Your Perfect Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <!-- ===== Auth Container (Initial State) ===== -->
+    <div class="auth-container" id="authContainer">
+        <!-- Login Form -->
+        <div class="auth-card" id="loginCard">
+            <div class="auth-header">
+                <h1>Welcome to PortfolioPro</h1>
+                <p>Build your professional portfolio in minutes</p>
+            </div>
+            <div class="auth-body">
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label for="loginEmail">Email Address</label>
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="loginPassword">Password</label>
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="loginPassword" placeholder="••••••••" required>
+                            <i class="fas fa-eye toggle-password" style="position: absolute; right: 15px; cursor: pointer;"></i>
+                        </div>
+                    </div>
+                    <div class="form-footer">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <span class="btn-text">Sign In</span>
+                        <div class="spinner"></div>
+                    </button>
+                    <div class="auth-divider">
+                        <span>or continue with</span>
+                    </div>
+                    <button type="button" class="btn btn-google btn-block">
+                        <i class="fab fa-google"></i> Sign in with Google
+                    </button>
+                    <p class="auth-switch">
+                        Don't have an account? <a href="#" id="showSignup">Sign up</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Signup Form (Hidden Initially) -->
+        <div class="auth-card hidden" id="signupCard">
+            <div class="auth-header">
+                <h1>Create Your Account</h1>
+                <p>Start building your portfolio today</p>
+            </div>
+            <div class="auth-body">
+                <form id="signupForm">
+                    <div class="input-group">
+                        <label for="signupName">Full Name</label>
+                        <div class="input-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="signupName" placeholder="John Doe" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="signupEmail">Email Address</label>
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="signupEmail" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="signupPassword">Create Password</label>
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="signupPassword" placeholder="••••••••" required minlength="6">
+                            <i class="fas fa-eye toggle-password" style="position: absolute; right: 15px; cursor: pointer;"></i>
+                        </div>
+                        <small style="display: block; margin-top: 5px; color: var(--gray);">Minimum 6 characters</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <span class="btn-text">Create Account</span>
+                        <div class="spinner"></div>
+                    </button>
+                    <p class="auth-switch">
+                        Already have an account? <a href="#" id="showLogin">Sign in</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Dashboard (Hidden Initially) ===== -->
+    <div class="dashboard" id="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="profile-summary">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSI3MCIgcj0iMzAiIGZpbGw9IiM2YzVjZTciLz48bGluZSB4MT0iMTAwIiB5MT0iMTAwIiB4Mj0iMTAwIiB5Mj0iMTUwIiBzdHJva2U9IiM2YzVjZTciIHN0cm9rZS13aWR0aD0iNSIvPjxsaW5lIHgxPSIxMDAiIHkxPSIxMjAiIHgyPSI2MCIgeTI9IjE0MCIgc3Ryb2tlPSIjNmM1Y2U3IiBzdHJva2Utd2lkdGg9IjUiLz48bGluZSB4MT0iMTAwIiB5MT0iMTIwIiB4Mj0iMTQwIiB5Mj0iMTQwIiBzdHJva2U9IiM2YzVjZTciIHN0cm9rZS13aWR0aD0iNSIvPjxsaW5lIHgxPSIxMDAiIHkxPSIxNTAiIHgyPSI3MCIgeTI9IjE4MCIgc3Ryb2tlPSIjNmM1Y2U3IiBzdHJva2Utd2lkdGg9IjUiLz48bGluZSB4MT0iMTAwIiB5MT0iMTUwIiB4Mj0iMTMwIiB5Mj0iMTgwIiBzdHJva2U9IiM2YzVjZTciIHN0cm9rZS13aWR0aD0iNSIvPjwvc3ZnPg==" alt="Profile" id="profileImage" class="profile-img">
+                <h3 id="profileName">Your Name</h3>
+                <p id="profileTitle">Your Profession</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="editor">
+                    <i class="fas fa-user-edit"></i> Edit Profile
+                </a>
+                <a href="#" class="nav-item" data-section="guide">
+                    <i class="fas fa-question-circle"></i> How to Build
+                </a>
+                <a href="#" class="nav-item" data-section="templates">
+                    <i class="fas fa-palette"></i> Templates
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Editor Section -->
+            <div class="editor-section" id="editorSection">
+                <div class="guide-container">
+                    <div class="guide-header">
+                        <h2><i class="fas fa-lightbulb"></i> Quick Start Guide</h2>
+                        <button class="btn btn-primary" id="startGuideBtn">Show Guide</button>
+                    </div>
+                    
+                    <div class="guide-steps" id="guideSteps" style="display: none;">
+                        <div class="step-indicator" id="stepIndicator">
+                            <div class="step-dot active" data-step="1"></div>
+                            <div class="step-dot" data-step="2"></div>
+                            <div class="step-dot" data-step="3"></div>
+                            <div class="step-dot" data-step="4"></div>
+                        </div>
+                        
+                        <div class="guide-step active" data-step="1">
+                            <h3><i class="fas fa-user"></i> Step 1: Personal Information</h3>
+                            <p>Start by filling in your basic details. This information will appear at the top of your portfolio.</p>
+                            <p><strong>Pro Tip:</strong> Use a professional email address and a high-quality profile picture.</p>
+                            <img src="https://via.placeholder.com/600x300?text=Personal+Info+Example" alt="Personal Info Example">
+                        </div>
+                        
+                        <div class="guide-step" data-step="2">
+                            <h3><i class="fas fa-lightbulb"></i> Step 2: Add Your Skills</h3>
+                            <p>List your key skills that showcase your expertise. These will be displayed as tags on your portfolio.</p>
+                            <p><strong>Pro Tip:</strong> Focus on 5-10 most relevant skills for your profession.</p>
+                            <img src="https://via.placeholder.com/600x300?text=Skills+Example" alt="Skills Example">
+                        </div>
+                        
+                        <div class="guide-step" data-step="3">
+                            <h3><i class="fas fa-briefcase"></i> Step 3: Work Experience</h3>
+                            <p>Add your professional experience with details about your roles and responsibilities.</p>
+                            <p><strong>Pro Tip:</strong> Use action verbs like "Developed", "Managed", "Created" to describe your work.</p>
+                            <img src="https://via.placeholder.com/600x300?text=Experience+Example" alt="Experience Example">
+                        </div>
+                        
+                        <div class="guide-step" data-step="4">
+                            <h3><i class="fas fa-eye"></i> Step 4: Preview & Publish</h3>
+                            <p>Review your portfolio in the preview section and make any final adjustments.</p>
+                            <p><strong>Pro Tip:</strong> Ask a friend to review your portfolio before publishing.</p>
+                            <img src="https://via.placeholder.com/600x300?text=Preview+Example" alt="Preview Example">
+                        </div>
+                        
+                        <div class="guide-navigation">
+                            <button class="btn btn-primary" id="prevStepBtn" disabled><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button class="btn btn-primary" id="nextStepBtn">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="editor-container">
+                    <!-- Personal Information Section -->
+                    <section class="editor-section">
+                        <h2 class="section-title"><i class="fas fa-user-cog"></i> Personal Information</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="jobTitle">Professional Title</label>
+                                <input type="text" id="jobTitle" placeholder="Web Developer">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" placeholder="your@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" placeholder="+1 234 567 890">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="bio">Bio</label>
+                                <textarea id="bio" rows="4" placeholder="Tell about yourself..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Profile Image</label>
+                                <input type="file" id="profileUpload" accept="image/*" hidden>
+                                <button class="btn btn-primary" onclick="document.getElementById('profileUpload').click()">
+                                    <i class="fas fa-upload"></i> Upload Image
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Skills Section -->
+                    <section class="editor-section">
+                        <h2 class="section-title"><i class="fas fa-lightbulb"></i> Skills</h2>
+                        <div class="skills-container">
+                            <div class="skills-input">
+                                <input type="text" id="skillInput" placeholder="Add skills (e.g., HTML, CSS)">
+                                <button class="btn btn-primary" id="addSkillBtn"><i class="fas fa-plus"></i> Add</button>
+                            </div>
+                            <div class="skills-tags" id="skillsList">
+                                <!-- Skills will be added here dynamically -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Experience Section -->
+                    <section class="editor-section">
+                        <h2 class="section-title"><i class="fas fa-briefcase"></i> Experience</h2>
+                        <div class="experience-container" id="experienceContainer">
+                            <!-- Experience items will be added here -->
+                            <div class="experience-item">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Job Title</label>
+                                        <input type="text" class="exp-title" placeholder="Frontend Developer">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Company</label>
+                                        <input type="text" class="exp-company" placeholder="Tech Corp">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Start Date</label>
+                                        <input type="month" class="exp-start">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>End Date</label>
+                                        <input type="month" class="exp-end">
+                                    </div>
+                                    <div class="form-group full-width">
+                                        <label>Description</label>
+                                        <textarea rows="3" class="exp-desc" placeholder="Job responsibilities..."></textarea>
+                                    </div>
+                                </div>
+                                <button class="remove-experience">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="addExperienceBtn">
+                            <i class="fas fa-plus"></i> Add Experience
+                        </button>
+                    </section>
+
+                    <!-- Preview Section -->
+                    <div class="template-preview-container">
+                        <h2 class="section-title"><i class="fas fa-eye"></i> Live Preview</h2>
+                        <div class="template-preview" id="templatePreview">
+                            <h3>Your portfolio preview will appear here</h3>
+                            <p>Start editing your information to see changes</p>
+                        </div>
+                        <div style="display: flex; gap: 15px; margin-top: 20px;">
+                            <button class="btn btn-success" id="savePortfolioBtn">
+                                <i class="fas fa-save"></i> Save Portfolio
+                            </button>
+                            <button class="btn btn-primary" id="changeTemplateBtn">
+                                <i class="fas fa-palette"></i> Change Template
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guide Section (Hidden Initially) -->
+            <div class="guide-section hidden" id="guideSection">
+                <div class="editor-container">
+                    <h2 class="section-title"><i class="fas fa-question-circle"></i> How to Build Your Portfolio</h2>
+                    
+                    <div class="guide-container">
+                        <h3><i class="fas fa-user"></i> 1. Personal Information</h3>
+                        <p>Start with your basic details. This is the first thing visitors will see on your portfolio.</p>
+                        <ul style="margin: 15px 0 15px 20px;">
+                            <li>Use your full professional name</li>
+                            <li>Choose a clear, professional title</li>
+                            <li>Upload a high-quality headshot</li>
+                            <li>Write a compelling bio (3-5 sentences)</li>
+                        </ul>
+                        
+                        <h3 style="margin-top: 25px;"><i class="fas fa-lightbulb"></i> 2. Skills Section</h3>
+                        <p>Showcase your key skills that are relevant to your profession.</p>
+                        <ul style="margin: 15px 0 15px 20px;">
+                            <li>List technical skills first (e.g., HTML, CSS, JavaScript)</li>
+                            <li>Include soft skills (e.g., Communication, Teamwork)</li>
+                            <li>Limit to 8-12 most relevant skills</li>
+                            <li>Order by proficiency level</li>
+                        </ul>
+                        
+                        <h3 style="margin-top: 25px;"><i class="fas fa-briefcase"></i> 3. Work Experience</h3>
+                        <p>Detail your professional journey with relevant work experiences.</p>
+                        <ul style="margin: 15px 0 15px 20px;">
+                            <li>Start with your most recent position</li>
+                            <li>Include company name and your job title</li>
+                            <li>Add dates of employment</li>
+                            <li>Describe responsibilities and achievements</li>
+                            <li>Use bullet points for readability</li>
+                        </ul>
+                        
+                        <h3 style="margin-top: 25px;"><i class="fas fa-eye"></i> 4. Final Touches</h3>
+                        <p>Polish your portfolio before publishing.</p>
+                        <ul style="margin: 15px 0 15px 20px;">
+                            <li>Preview on different devices</li>
+                            <li>Check for spelling/grammar errors</li>
+                            <li>Ask for feedback from colleagues</li>
+                            <li>Update your portfolio regularly</li>
+                        </ul>
+                        
+                        <button class="btn btn-primary" style="margin-top: 20px;" id="backToEditorBtn">
+                            <i class="fas fa-arrow-left"></i> Back to Editor
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Templates Section (Hidden Initially) -->
+            <div class="templates-section hidden" id="templatesSection">
+                <div class="editor-container">
+                    <h2 class="section-title"><i class="fas fa-palette"></i> Choose a Template</h2>
+                    
+                    <div class="templates-grid">
+                        <div class="template-card" data-template="minimal">
+                            <div class="template-preview-image" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);"></div>
+                            <div class="template-info">
+                                <h3>Minimal</h3>
+                                <p>Clean and simple design that focuses on your content</p>
+                                <button class="btn btn-primary select-template-btn" style="width: 100%;">Select Template</button>
+                            </div>
+                        </div>
+                        
+                        <div class="template-card" data-template="professional">
+                            <div class="template-preview-image" style="background: linear-gradient(135deg, var(--success) 0%, #00a884 100%);"></div>
+                            <div class="template-info">
+                                <h3>Professional</h3>
+                                <p>Formal business style for corporate environments</p>
+                                <button class="btn btn-primary select-template-btn" style="width: 100%;">Select Template</button>
+                            </div>
+                        </div>
+                        
+                        <div class="template-card" data-template="creative">
+                            <div class="template-preview-image" style="background: linear-gradient(135deg, var(--secondary) 0%, #e84393 100%);"></div>
+                            <div class="template-info">
+                                <h3>Creative</h3>
+                                <p>Colorful and artistic design for creative professionals</p>
+                                <button class="btn btn-primary select-template-btn" style="width: 100%;">Select Template</button>
+                            </div>
+                        </div>
+                        
+                        <div class="template-card" data-template="modern">
+                            <div class="template-preview-image" style="background: linear-gradient(135deg, var(--warning) 0%, #e17055 100%);"></div>
+                            <div class="template-info">
+                                <h3>Modern</h3>
+                                <p>Sleek contemporary design with bold typography</p>
+                                <button class="btn btn-primary select-template-btn" style="width: 100%;">Select Template</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
