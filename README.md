@@ -10,5 +10,5 @@ Features
 5.Responsive UI with clean UX
 
 Tech Stack
-HTML | CSS | JavaScript
+Python, Django, SQLite/MySQL, HTML, CSS, Bootstrap, Django Authentication System, CRUD Operations, Django ORM, Responsive Web Design
 
